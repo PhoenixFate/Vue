@@ -23,17 +23,19 @@
                         id:<input type="text" v-model="id" class="form-control"></input>
                     </label>
                     <label>
-                        name:<input type="text" v-model="name" class="form-control"></input>
+                        name:<input type="text" v-model="name" class="form-control" @keyup.f2="add"></input>
                     </label>
                     <!-- add, add() 没什么区别，唯一区别： (可以传参) -->
                     <input type="button" value="添加" class="btn btn-primary" @click="add">
 
+
+                    <!-- 注意：vue所有的指令调用的时候，都以v-开头 -->
                     <label>
-                        搜索关键字:<input type="text" v-model="keywords" class="form-control"></input>
+                        搜索关键字:<input type="text" v-model="keywords" class="form-control" id="search" v-focus v-color="'blue'"></input>
                     </label>
 
                 </div>
-            </div>
+            </div> 
 
             <thead>
                 <tr>
@@ -55,8 +57,8 @@
             </tbody>
         </table>
     </div>
-    <div id="app2">
-        {{dt | dateFormat}}
+    <div id="app2" >
+        <h3 v-color="'pink'" v-fontweight="900"  v-fontsize="30">{{dt | dateFormat}}</h3>
     </div>
     <script>
         // 全局过滤器，进行时间格式化
@@ -76,6 +78,59 @@
             //模板字符串写法: 
             return `${year}-${month}-${day}`;
         })
+
+        //vue 2.x中自定义键盘码的方法：
+        //自定义键盘码
+        Vue.config.keyCodes.f2=113;
+
+
+        //使用Vue.directive() 定义全局的指令
+        //其中：参数1：指令的名称，在定义的时候不需要加v-开头，但是在调用的时候，必须在名称前加v-前缀
+        //参数2：是一个对象，这个对象身上，有一些指令相关的函数，这些函数可以在特定的阶段，执行相关的操作
+        Vue.directive("focus",{
+            //每当指令绑定到元素上的时候，会立即执行这个bind函数，只执行一次
+            //三个函数的第一个参数，永远是el，表示被绑定的那个元素，并且这个el是一个js原生对象（dom对象）
+            bind:function(el){
+                //el即为绑定的那个元素
+                //在元素 刚绑定了指令的时候， 还没有插入到dom树中，所以调用focus方法没有作用
+                //el.focus();
+            },
+            //元素插入dom中的时候，会执行inserted函数
+            inserted:function(el){
+                //和js行为有关的操作，最好在inserted中操作，防止js不生效
+                el.focus();
+            },
+            //当vnode更新的时候，会执行updated，可能会触发多次
+            updated:function(){
+
+            }
+        })
+
+        //自定义v-color 指令：设置字体的颜色
+        Vue.directive("color",{
+            //样式只要通过指令绑定给了元素，不管这个元素有没有被插入到页面中，这个元素肯定有了一个内联的样式
+            //将来元素肯定会显示到页面中，这时候浏览器渲染引擎必然会解析样式，应用给这个元素
+            //第一个参数：el
+            //第二个参数：binding
+            bind:function(el,binding){
+                //和样式相关的操作，一般都可以在bind中操作
+                el.style.color="red";
+                console.log("binding.name: "+binding.name); 
+                console.log("binding.value: "+binding.value);
+                console.log("binding.expression: "+binding.expression);
+
+                el.style.color=binding.value;
+            },
+
+            inserted:function(el){
+
+            },
+
+            updated:function(){
+
+            }
+        })
+        
 
 
         var vm = new Vue({
@@ -195,8 +250,30 @@
                         return `${year}-${month}-${day} ${hour}:${minute}:${second}   --by private filter`;
                     }
                 }
+            },
+
+            //自定义私有指令
+            directives: {
+                //字体粗细样式
+                'fontweight':{
+                    bind:function(el,binding){
+                        console.log("binding.value: "+binding.value);
+                        el.style.fontWeight=binding.value;
+                    }
+                },
+
+                //字体大小：
+                'fontsize':function(el,binding){
+                    //注意这个function等同于把代码写到bind或updated中去
+                    console.log("binding.value: "+binding.value);
+                    el.style.fontSize=parseInt(binding.value)+"px";
+                }
+                
             }
         })
+
+        //js中获得焦点的方法：
+        //document.getElementById("search").focus();
 
     </script>
 </body>
