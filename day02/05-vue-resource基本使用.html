@@ -30,7 +30,7 @@
                 getInfo(){
                     //发起get请求
                     //当发起get请求的时候，通过.then来设置成功的函数
-                    this.$http.get('http://127.0.0.1:8081/user/1',{}).then(function(result){
+                    this.$http.get('http://jd.itying.com/api/pcate',{}).then(function(result){
                         console.log(result);
                         console.log(result.data);
                         console.log(result.body);
@@ -42,7 +42,7 @@
                     //发起get请求
                     //当发起get请求的时候，通过.then来设置成功的函数
                     //手动发起的post请求，没有form表单
-                    this.$http.post('http://127.0.0.1:8081/user/post',{id:'1'},{emulateJSON:true}).then(function(result){
+                    this.$http.post('http://jd.itying.com/api/sendCode',{"tel":"18751801512"},{emulateJSON:true}).then(function(result){
                         console.log(result);
                         console.log(result.data);
                         console.log(result.body);
@@ -54,7 +54,7 @@
                 getInfo2(){
                     //发起get请求
                     //当发起get请求的时候，通过.then来设置成功的函数
-                    this.$http.jsonp('http://127.0.0.1:8081/user/1',{}).then(function(data){
+                    this.$http.jsonp('http://jd.itying.com/api/pcate',{}).then(function(data){
                         console.log(data);
                     },function(error){
                         console.log(error);
