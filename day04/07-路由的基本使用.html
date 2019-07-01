@@ -10,6 +10,25 @@
     <!-- 安装vue-router模块 -->
     <!-- 1. -->
     <script src="../lib/vue-router-3.0.1.js"></script>
+    <style>
+        .router-link-active {
+            color:red;
+        }
+        .my-active {
+            color:green;
+        }
+
+        .v-enter,
+        .v-leave-to {
+            opacity:0;
+            transform: translateX(140px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease; 
+        }
+    </style>
 </head>
 
 <body>
@@ -23,7 +42,11 @@
         <router-link to="/login" tag="span">登录</router-link>
         <router-link to="/register">注册</router-link>
         <!-- 这是vue-router提供的标签 -->
-        <router-view></router-view>
+        <!-- 路由获得的内容展现在router-view中 -->
+        <transition mode="out-in">
+            <router-view></router-view>
+
+        </transition>
     </div>
 
     <script>
@@ -50,7 +73,9 @@
                 { path: '/', redirect:'/login'},//
                 { path: '/login', component: login },
                 { path: '/register', component: register }
-            ]
+            ],
+            // 设置路由激活时绑定的类名
+            linkActiveClass:"my-active"
         })
 
         var vm = new Vue({
