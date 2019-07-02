@@ -32,12 +32,23 @@
       <transition name="haha">
           <div class="bug" v-if="show">你好</div>
       </transition>
+      <input type="checkbox"  @click="change" :checked="myCheck==1" >
     </div>
     <script type="text/javascript">
-        new Vue({
+        var vm=new Vue({
           el: '#demo',
           data: {
+            obj:{
+              myCheck:1
+            },
+            myCheck:0,
             show: true
+          },
+          methods:{
+            change(){
+              this.myCheck=!this.myCheck;
+              console.log(this.myCheck);
+            }
           }
         })
     </script>
