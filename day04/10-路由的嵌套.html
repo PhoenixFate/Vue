@@ -10,15 +10,16 @@
 </head>
 <body>
     <div id="app">
-        <router-link to="/">Account</router-link>
+        <router-link to="/account">Account</router-link>
         <router-view></router-view>
     </div>
 
     <template id="temp1">
         <div>
             <h1>这是account组件</h1>
-            <router-link to="/login">登录</router-link>
-            <router-link to="/register">注册</router-link>
+            <router-link to="/account/login">登录</router-link>
+            <router-link to="/account/register">注册</router-link>
+            <router-view></router-view>
         </div>
     </template>
 
@@ -27,9 +28,30 @@
             template:"#temp1"
         }
 
+        var login={
+            template:"<h1>登录组件</h1>"
+        }
+
+        var register={
+            template:"<h1>注册组件</h1>"
+        }
+
         var router=new VueRouter({
             routes:[
-                {path:'/',component:account}
+                {
+                    path:'/account',
+                    component:account,
+                    // 子路由的嵌套
+                    // 子路由的path前面不要带 '/'，否则永远以根路径开始匹配
+                    children:[
+                        {path:'login',component:login},
+                        {path:'register',component:register}
+                    ]
+                },
+
+                // 不建议以下的写法：
+                // {path:'/account/login',component:login},
+                // {path:'/account/register',component:register}
             ]
         })
 
