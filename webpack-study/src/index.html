@@ -10,7 +10,15 @@
     <!-- <script src="./main.js"></script> -->
 
     <!-- 通过webpack 怎么一个前端构建工具，把main.js 做了一个处理，生成一个bundle.js 的文件 -->
-    <script src="../dist/bundle.js"></script>
+    <!-- 当使用html-webpack-plugin之后，我们不再需要手动处理bundle.js的引用路径了，因为这个插件，
+        已经帮我们自动创建一个合适的script，并且，引用了正确的路径
+    -->
+    <!-- <script src="/bundle.js"></script> -->
+
+
+    <!--  不建议手动导入 -->
+    <!-- <link rel="stylesheet" href="./css/index.css"> -->
+
 </head>
 <body>
     <ul>
@@ -25,5 +33,6 @@
         <li>这是第9个li</li>
         <li>这是第10个li</li>
     </ul>
+    <div class="box"></div>
 </body>
 </html>
