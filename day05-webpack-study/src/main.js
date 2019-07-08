@@ -1,5 +1,5 @@
 // 这个main.js是这个项目的入口js
-
+console.log("day05")
 // 导入jquery
 // import *** from *** 是es6中导入模块的方式
 // 由于es6 的语法太高级；浏览器无法直接执行，所以执行下面这行会报错，所以需要webpack
@@ -91,9 +91,9 @@ cnpm i -D @babel/core
 npm un babel-preset-env
 npm un babel-preset-stage-0
 4、 安装新的babel-preset
-cnpm i @babel/preset-react
-cnpm i @babel/preset-env
-cnpm i babel-preset-mobx
+cnpm i @babel/preset-react -D
+cnpm i @babel/preset-env -D
+cnpm i babel-preset-mobx -D
 5、 卸载旧的babel-plugin
 npm un babel-plugin-transform-runtime
 6、 安装新的babel-plugin

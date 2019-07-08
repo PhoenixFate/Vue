@@ -1,2 +1,4 @@
 .DS_Store
-webpack-study/node_modules/*
+day05-webpack-study/node_modules/*
+day06-webpack-init-vue/node_modules/*
+day06-webpack-vue-router/node_modules/*
