@@ -8,6 +8,17 @@ Vue.use(VueRouter)
 
 import router from './router.js'
 
+//导入bootstrap样式
+//import "bootstrap/dist/css/bootstrap.css"
+import './css/app.css'
+
+// 导入所有的MintUI组件 （全局导入MintUI之后，css组件不要再次导入）
+// 导入MintUI 
+import MintUI from 'mint-ui'   // 把所有组件全部导入
+// 导入MintUI的css，这里可以省略node_modules
+import 'mint-ui/lib/style.css'
+// 把MintUI安装到vue中
+Vue.use(MintUI)   // 把所有的组件注册为全局的组件
 
 var vm=new Vue({
     el:"#app",
