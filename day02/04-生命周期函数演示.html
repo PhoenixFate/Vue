@@ -37,7 +37,6 @@
             //第一个生命周期函数
             beforeCreate(){
                 console.log("---------before created--------");
-
                 console.log("拿不到data中的数据："+this.msg);
             },
             created(){
@@ -58,8 +57,6 @@
                 //mounted 是实例创建期间的最后一个生命周期函数，当执行完mounted之后，表示实例已经完全
                 //创建好了
             },
-
-
 
             //运行期间的两个函数
             //数据已经被更新了，在更新之前调用这个函数
