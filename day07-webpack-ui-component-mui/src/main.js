@@ -9,8 +9,13 @@ Vue.use(VueRouter)
 import router from './router.js'
 
 //导入bootstrap样式
-//import "bootstrap/dist/css/bootstrap.css"
+// 如果要通过路径的形式引入node_modules下面相关的文件，可以直接省略路径前面的node_modules这一层目录，直接写包名，然后后面跟上具体的文件路径
+import "bootstrap/dist/css/bootstrap.css"
 import './css/app.css'
+
+// 导入mui样式
+import './lib/mui/css/mui.css'
+
 
 // 导入所有的MintUI组件 （全局导入MintUI之后，css组件不要再次导入）
 // npm install mint-ui -S 

@@ -66,7 +66,7 @@ module.exports={
 
             // limit 给定的值是图片的大小，单位是byte，如果我们引用的图片大于或等于limite的值，则不会被转为base64格式的字符串，如果图片的大小小于limit的值，则会转为base64的图片
             {test:/\.(png|jpg|gif|jpeg|bmp)$/,use:['url-loader?limit=500&name=[hash:8]-[name].[ext]']},               //配置处理图片url的加载器
-
+            {test:/\.(ttf|eot|svg|woff|woff2)$/,use:['url-loader']},  // 处理字体的loader
             {test:/\.js$/,use:'babel-loader',exclude:/node_modules/},  // babel加载器，用来将es6等高级语法转换成低级语法
 
 

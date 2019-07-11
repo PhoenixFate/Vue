@@ -4,3 +4,4 @@ day06-webpack-init-vue/node_modules/*
 day06-webpack-vue-router/node_modules/*
 day06-webpack-vue-children-router/node_modules/*
 day07-webpack-ui-component-mintui/node_modules/*
+day07-webpack-ui-component-mui/node_modules/*
