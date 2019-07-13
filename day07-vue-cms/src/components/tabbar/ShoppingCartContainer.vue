@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>ShoppingCartContainer</h1>
+        <h2>ShoppingCartContainer</h2>
     </div>
 </template>
 <script>
