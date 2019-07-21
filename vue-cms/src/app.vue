@@ -32,16 +32,29 @@
 </template>
 
 <script>
+import mui from "./lib/mui/js/mui.js";
 export default {
   data() {
     return {};
   },
   created() {},
+  mounted() {
+    mui("body").on("click", "a", function() {
+      document.location.href = this.href;
+    });
+  },
   methods: {}
 };
 </script>
 
 <style lang="scss" scoped>
+.mint-header {
+  z-index:999;
+}
+
+* {
+  touch-action: pan-y;
+}
 .app-container {
   padding-top: 40px;
   padding-bottom: 56px;
@@ -51,7 +64,6 @@ export default {
 .v-enter {
   opacity: 0;
   transform: translateX(100%);
-  
 }
 
 .v-leave-to {

@@ -89,3 +89,41 @@
 ## 绘制图片列表 组件页面结构并美化样式
 1. 制作顶部的滑动条
 2. 制作底部的图片列表
+### 制作顶部滑动条的坑：
+1. 需要借助于 mui中的tab-top-webview-main.html
+2. 需要把slider区域中 的mui-fullscreen 类去掉
+3. 滑动条无法正常触发滑动，通过检查官方组件，发现这是js组件，需要初始化一下：
+ + 导入mui.js
+ + 调用官方提供的方法初始化组件：
+ ```
+  mui('.mui-scroll-wrapper').scroll({
+    deceleration:0.005 // flick 减速系数
+  })
+ ```
+4. 我们在初始化滑动条的时候导入了mui.js，但是控制台报错：`mui.js:3964 Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them`
+ + webpack 打包好的bundle.js 默认是启动严格模式的，所以这两者冲突了
+ + 解决方案：在webpack中禁用严格模式
+ + npm install babel-plugin-transform-remove-strict-mode -D
+ ```
+    "plugins": [
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-transform-runtime",
+        ["@babel/plugin-transform-modules-commonjs", { "strictMode": false }]
+    ]
+ ``` 
+5. 刚进入图片分享的时候，滑动条无法正常工作；如果要初始化滑动条，必须要等dom元素加载完毕，所以把初始化滑动条的代码搬到mounted()之中
+6. 当滑动条ok之后，发现，tabber无法正常工作了，解决：
+  ``` 
+    mounted() { 
+      mui('body').on('click','a',function(){
+          document.location.href=this.href;
+      })
+    },
+  ``` 
+7. 获取所有分类，并渲染分类列表
+
+
+### 制作图片列表区域
+1. 图片列表需要使用懒加载技术，我们可以使用mint-ui 提供的现成组件，‘lazy-load’
+2. 根据lazy-load 的使用文档 尝试使用
+3. 渲染图片列表数据

@@ -32,7 +32,7 @@ export default {
     methods:{
         getNewsList(){
             // vue-resouce的请求url最前面不能带'/'
-            this.$http.get('app/a/app/tblInformation/getPagelist?pageNum=1')
+            this.$http.get('https://njrzzk.com/app/a/app/tblInformation/getPagelist?pageNum=1')
             .then(result=>{
                 console.log(result)
                 if(result.body.code==0){

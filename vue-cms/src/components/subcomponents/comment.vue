@@ -35,7 +35,7 @@ export default {
 
   methods: {
     getCommentList(){
-      this.$http.get('app/a/app/tblComment/getPagelist?'+'pageNum='+this.pageNum+'&picTextId=8ef90f94a773456c949e4053161bf71d').then(result=>{
+      this.$http.get('https://njrzzk.com/app/a/app/tblComment/getPagelist?'+'pageNum='+this.pageNum+'&picTextId=8ef90f94a773456c949e4053161bf71d').then(result=>{
         console.log(result)
         if(result.body.code==0){
           this.comments=this.comments.concat(result.body.rows);

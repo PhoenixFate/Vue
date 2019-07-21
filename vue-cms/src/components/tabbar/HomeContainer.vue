@@ -73,7 +73,7 @@ export default {
     // 获取轮播图数据
     getSwipe() {
       this.$http
-        .get("app/a/app/tblImgCycle/getlist")
+        .get("https://njrzzk.com/app/a/app/tblImgCycle/getlist")
         .then(result => {
           // 这是成功的
           if (result.body.code == 0) {

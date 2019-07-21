@@ -31,22 +31,27 @@ import VueResource from 'vue-resource'
 // 2.2 安装vue-resource
 Vue.use(VueResource)
 // 设置请求根路径
-Vue.http.options.root='https://njrzzk.com'
+//Vue.http.options.root='https://njrzzk.com'
 // 全局设置post时候表单数据格式组织形式; 默认请求头: application/x-www-form-urlencoded
 Vue.http.options.emulateJSON=true
 
 
 
 
-// 导入mint-ui 
-import { Header ,Button} from 'mint-ui';
+// 按需导入mint-ui 
+// import { Header ,Button} from 'mint-ui';
+// import 'mint-ui/lib/style.css'
+// Vue.component(Header.name,Header)
+// Vue.component(Button.name,Button)
+// import { Swipe, SwipeItem } from 'mint-ui';
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
+// // 懒加载
+// import { Lazyload } from 'mint-ui';
+// Vue.use(Lazyload)
+import MintUI from 'mint-ui';
+Vue.use(MintUI)
 import 'mint-ui/lib/style.css'
-Vue.component(Header.name,Header)
-Vue.component(Button.name,Button)
-import { Swipe, SwipeItem } from 'mint-ui';
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-
 
 
 // 导入mui的样式

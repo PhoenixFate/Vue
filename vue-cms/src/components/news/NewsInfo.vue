@@ -51,7 +51,7 @@ export default {
     },
     methods:{
         getNewsInfo(){
-            this.$http.get("app/a/app/tblInformation/getDetail?id="+this.id).then(result=>{
+            this.$http.get("https://njrzzk.com/app/a/app/tblInformation/getDetail?id="+this.id).then(result=>{
                 console.log(result)
                 if(result.body.code==0){
                     // success
