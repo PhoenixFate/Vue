@@ -32,6 +32,9 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 // 设置请求根路径
 Vue.http.options.root='https://njrzzk.com'
+// 全局设置post时候表单数据格式组织形式; 默认请求头: application/x-www-form-urlencoded
+Vue.http.options.emulateJSON=true
+
 
 
 
