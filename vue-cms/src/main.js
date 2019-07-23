@@ -61,6 +61,19 @@ import "./lib/mui/css/icons-extra.css"
 // 导入app根组件
 import app from './app.vue'
 
+
+
+
+
+
+//安装图片预览插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
+
+
+
+
 var vm=new Vue({
     el:"#app",
     render:createElements=>createElements(app),
