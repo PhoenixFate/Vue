@@ -30,7 +30,7 @@
 </template>
 <script>
 import comments from "../subcomponents/comment.vue";
-export default {
+export default  {
   components: {
     comment: comments
   },
