@@ -1,12 +1,7 @@
 <template>
   <div>
     <!-- 这是轮播图区域 -->
-    <mt-swipe :auto="4000">
-      <!-- 在组件中使用v-for循环的话，一定要使用:key -->
-      <mt-swipe-item v-for="item in swipeList" :key="item.id">
-        <img :src="item.mainImage" alt />
-      </mt-swipe-item>
-    </mt-swipe>
+    <swiper :swipeList="swipeList" :isFull="true"></swiper>
 
     <!-- 九宫格布局 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -60,7 +55,11 @@
 
 <script>
 import { Toast } from "mint-ui";
+import swiper  from "../subcomponents/swiper.vue"
 export default {
+  components: {
+    swiper
+  },
   data() {
     return {
       swipeList: [] //保存轮播图的数据
@@ -95,26 +94,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mint-swipe {
-  height: 200px;
-  .mint-swipe-item {
-    // sacc语法：
-    &:nth-child(1) {
-      color: red;
-    }
-    &:nth-child(2) {
-      color: yellow;
-    }
-    &:nth-child(3) {
-      color: yellowgreen;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
 
 .mui-grid-view.mui-grid-9 {
   background-color: #fff;
