@@ -25,7 +25,7 @@
           </p>
           <p>
             购买数量：
-            <number-box @getCount="getSelectedCount"></number-box>
+            <number-box @getCount="getSelectedCount" :max="goodsInfo.salecount"></number-box>
           </p>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
