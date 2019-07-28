@@ -5,7 +5,7 @@
     </transition>
 
     <!-- 商品轮播图区域 -->
-    <div class="mui-card">
+    <div class="mui-card" >
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
           <swiper :swipeList="swipeList" :isFull="false"></swiper>
@@ -73,6 +73,7 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      index:this.$route.params.index,
       swipeList: [],
       goodsInfo: {},
       ballFlag: false, //控制小球隐藏和显示的标识符
@@ -119,7 +120,13 @@ export default {
     },
 
     addToShopCar() {
+      // 添加商品到购物车
       this.ballFlag = !this.ballFlag;
+      // 拼接出一个，要保存到store中car数组里的商品信息对象
+      var goodsInfo={id:this.index,count:parseInt(this.selectedCount),price:this.goodsInfo.price,selected:true}
+
+      // 调用store中的mutations来将商品加入购物车
+      this.$store.commit('addToCar',goodsInfo)
     },
 
 
@@ -156,9 +163,10 @@ export default {
         });
     },
     getGoodsInfo() {
-      let url = "http://jd.itying.com/api/pcontent?id=" + this.id;
+      const url = "http://jd.itying.com/api/pcontent?id=" + this.id;
+      console.log(url)
       this.$http
-        .jsonp("http://jd.itying.com/api/pcontent?id=59f6a2d27ac40b223cfdcf81")
+        .jsonp('http://jd.itying.com/api/pcontent?id=59f6a2d27ac40b223cfdcf81')
         .then(result => {
           console.log(result);
           this.goodsInfo = result.body.result;

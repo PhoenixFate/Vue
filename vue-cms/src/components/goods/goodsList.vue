@@ -25,7 +25,7 @@
     <!-- 在网页中有两种页面跳转方式： -->
     <!-- 方式1：使用a标签的形式；叫做标签跳转 -->
     <!-- 方式2：使用window.location.href=""的形式；叫做编程式导航 -->
-        <div class="goods-item" v-for="item in goodsList" :key="item.pic" @click="toDetail(item.cid)">
+        <div class="goods-item" v-for="(item,index) in goodsList" :key="item.pic" @click="toDetail(item.cid,index)">
       <img
         :src="item.pic"
         alt
@@ -81,7 +81,7 @@ export default {
     },
 
     // 使用js进行路由导航
-    toDetail(id){
+    toDetail(id,index){
         // this.$route: 路由参数对象；所有路由中的参数，params,query 都属于它
 
         // this.$router: 路由导航对象；用它可以进行路由的前进和后退、跳转到新的url地址
@@ -92,7 +92,7 @@ export default {
         // this.$router.push({path:'/home/goodsInfo/'+id});
 
         // 3. 传递命名从路由
-        this.$router.push({name:"goodsInfo" ,params:{id}})
+        this.$router.push({name:"goodsInfo" ,params:{id,index}})
     }
   }
 };
