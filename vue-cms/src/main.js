@@ -54,7 +54,31 @@ var store = new Vuex.Store({
             })
             // 当更新car之后，把car数组，存储到本地的localStorage中，
             localStorage.setItem('car', JSON.stringify(state.car));
-        }
+        },
+
+        removeFromCar(state,id){
+            // 购物车中，点击删除按钮，根据id删除某个元素
+            state.car.some((item,i)=>{
+                if(item.id==id){
+                    state.car.splice(i,1)
+                    return true
+                }
+            })
+            localStorage.setItem('car', JSON.stringify(state.car));
+        },
+
+        changeSelected(state,id){
+            state.car.some(item=>{
+                if(item.id==id){
+                    item.selected=!item.selected;
+                    return true;
+                }
+
+            })
+            localStorage.setItem('car', JSON.stringify(state.car));
+        },
+
+
     },
     getters: {
         // 相当于计算属性，也相当于filters
@@ -64,6 +88,18 @@ var store = new Vuex.Store({
                 c += parseInt(item.count);
             })
             return c;
+        },
+
+        getCountAndAmount(state){
+            var c=0;
+            var amount=0;
+            state.car.forEach(item=>{
+                if(item.selected){
+                    c+=parseInt(item.count);
+                    amount+=item.price*parseInt(item.count);
+                }
+            })
+            return {count:c,amount:amount}
         }
     }
 });

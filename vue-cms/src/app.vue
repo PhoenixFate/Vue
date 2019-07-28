@@ -1,7 +1,12 @@
 <template>
   <div class="app-container">
     <!-- 顶部header区域 -->
-    <mt-header fixed title="vue 移动app"></mt-header>
+    <mt-header fixed title="vue 移动app">
+      <span slot="left" @click="goBack()" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+
+    </mt-header>
     <!-- 中间的路由router-view区域 -->
     <transition>
       <router-view></router-view>
@@ -35,15 +40,37 @@
 import mui from "./lib/mui/js/mui.js";
 export default {
   data() {
-    return {};
+    return {
+      flag:false,
+    };
   },
-  created() {},
+  created() {
+    if(this.$route.path=="/home"){
+      this.flag=false;
+    }else {
+      this.flag=true;
+    }
+  },
   mounted() {
     mui("body").on("click", "a", function() {
       document.location.href = this.href;
     });
   },
-  methods: {}
+  methods: {
+    goBack(){
+      this.$router.go(-1)
+    }
+  },
+
+  watch:{
+    '$route.path':function(newValue){
+      if(newValue=="/home"){
+        this.flag=false;
+      }else {
+        this.flag=true;
+      }
+    }
+  }
 };
 </script>
 
