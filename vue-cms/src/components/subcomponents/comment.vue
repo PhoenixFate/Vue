@@ -56,7 +56,7 @@ export default {
       // url，
       // params ：{ }
       // 定义提交时候，表单的数据格式：{ emulateJSON:true}   因为全局设置了，所以第三个参数可以省略
-      this.$http.post('app/a/app/tblComment/submitComment',
+      this.$http.post('https://njrzzk.com/app/a/app/tblComment/submitComment',
       {"content":this.msg.trim(),
       "picTextId":"8ef90f94a773456c949e4053161bf71d",
       "registarId":"5308175f2b304c4c9db949bc2ff51f4c"})

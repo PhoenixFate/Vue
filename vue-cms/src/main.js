@@ -2,18 +2,32 @@
 import Vue from 'vue'
 
 
+// axios
+// 引入
+import Axios from 'axios'
+// 给vue原型挂载一个属性
+Vue.prototype.$axios=Axios
+
+
+
+
+
+
+
+
+
 // 注册vuex
 import Vuex from "vuex"
 Vue.use(Vuex)
 
 
 
+
+
+
+
 // 每次刚进入网站的时候，肯定会调用main.js，在刚调用的时候，先从本地存储中，把购物车的数据读取出来，放到store中
 var car = JSON.parse(localStorage.getItem('car') || '[]')
-
-
-
-
 
 var store = new Vuex.Store({
     state: {

@@ -82,6 +82,9 @@ export default {
   },
   created() {
     this.getSliders();
+
+  },
+  mounted(){
     this.getGoodsInfo();
   },
 
@@ -166,7 +169,7 @@ export default {
       const url = "http://jd.itying.com/api/pcontent?id=" + this.id;
       console.log(url)
       this.$http
-        .jsonp('http://jd.itying.com/api/pcontent?id=59f6a2d27ac40b223cfdcf81')
+        .get("http://jd.itying.com/api/pcontent",{params:{id:this.id}})
         .then(result => {
           console.log(result);
           this.goodsInfo = result.body.result;
