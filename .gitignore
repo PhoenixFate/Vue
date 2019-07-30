@@ -12,5 +12,6 @@ day07-vue-cms/node_modules/*
 day08/node_modules/*
 vue-cms/node_modules/*
 vue-cms/dist/
+vue-cms/package-lock.json
 vuex-study/node_modules/*
 extra/node_modules/
