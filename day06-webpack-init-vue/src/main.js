@@ -28,6 +28,11 @@ import login from './login.vue'
 // 在配置文件中新增loader配置项{test:/\.vue$/,use:'vue-loader'}
 
 
+
+const FS=require('fs');
+console.log("------------------------------")
+console.log(FS);
+
 var vm=new Vue({
     el:"#app",
     data:{

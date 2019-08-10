@@ -1,4 +1,5 @@
 const path=require("path")
+
 // 启用热更新的第二步
 const webpack=require("webpack")
 
@@ -70,6 +71,10 @@ module.exports={
 
             {test:/\.vue$/,use:'vue-loader'}  // 处理.vue文件的加载器
         ]
+    },
+
+    node: {
+        fs: 'empty'
     },
 
     resolve:{
