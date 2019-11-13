@@ -56,6 +56,9 @@
 <script>
 import { Toast } from "mint-ui";
 import swiper  from "../subcomponents/swiper.vue"
+import axios from 'axios'
+import Qs from 'qs'
+
 export default {
   components: {
     swiper
@@ -66,6 +69,19 @@ export default {
     };
   },
   created() {
+    let data = {
+      "app_code": "ptp",
+      "security_key": "ptp123456"
+    }
+    //{headers:{'Content-Type':'application/x-www-form-urlencoded'}}
+    axios.post('http://bc2.njzhyl.cn/ptp/api/authorize', Qs.stringify(data)
+    ).then(function (response) {
+        console.log(response);
+    }).catch(function (error) {
+        console.log(error);
+    });
+
+
     this.getSwipe();
   },
   methods: {
