@@ -69,21 +69,40 @@ export default {
     };
   },
   created() {
-    let data = {
-      "app_code": "ptp",
-      "security_key": "ptp123456"
-    }
-    //{headers:{'Content-Type':'application/x-www-form-urlencoded'}}
-    axios.post('http://bc2.njzhyl.cn/ptp/api/authorize', Qs.stringify(data)
-    ).then(function (response) {
-        console.log(response);
-    }).catch(function (error) {
-        console.log(error);
-    });
+  let data = {
+        "app_code": "ptp",
+        "security_key": "ptp123456"
+      }
+      axios.post('http://bc2.njzhyl.cn/ptp/api/authorize', Qs.stringify(data),
+      {headers:{'Content-Type':'application/x-www-form-urlencoded'}}).then(function (response) {
+          console.log(response);
+          console.log("appToken: "+response.data.token);
+          localStorage.setItem("appToken",response.data.token,60*1000);
+      }).catch(function (error) {
+          console.log(error);
+      });
+    
+
+    axios.interceptors.request.use(function(config){
+      var appToken=localStorage.getItem("appToken");
+      if(appToken){
+        config.headers.common['X-Auth-App-Token']=appToken;
+      }
+      return config;
+    })
 
 
-    this.getSwipe();
-  },
+  axios.post('http://bc2.njzhyl.cn/ptp/api/login', {
+            "username": "njzhyl-admin",
+            "password": "njzhyl123456"
+          },
+          ).then(function (response) {
+              console.log(response);
+          }).catch(function (error) {
+              console.log(error);
+          });
+      this.getSwipe();
+    },
   methods: {
     // 获取轮播图数据
     getSwipe() {

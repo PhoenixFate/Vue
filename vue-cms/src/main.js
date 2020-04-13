@@ -191,6 +191,8 @@ import app from './app.vue'
 
 
 
+
+
 //安装图片预览插件
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
